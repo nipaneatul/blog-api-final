@@ -12,28 +12,25 @@ import com.blog.api.domain.User;
 
 @Service
 public class UserService {
-	
-	List<User> users;
-	
+	private List<User> users;
+
 	@Autowired
-	IdGenerator idGenerator;
-	
+	private IdGenerator idGenerator;
+
 	@PostConstruct
-	private void init() {
+	public void init() {
 		users = new ArrayList<>();
 	}
-	
+
 	public List<User> list() {
 		return users;
 	}
-	
+
 	public User getUser(Long id) {
-		User user = users.stream()
-				.filter(p -> p.getId().equals(id))
-				.findFirst().get();
+		User user = users.stream().filter(p -> p.getId().equals(id)).findFirst().get();
 		return user;
 	}
-	
+
 	public User save(User newUser) {
 		User user = new User();
 		user.setId(idGenerator.generate());
@@ -43,7 +40,7 @@ public class UserService {
 		users.add(user);
 		return user;
 	}
-	
+
 	public User update(User updatedUser) {
 		User user = getUser(updatedUser.getId());
 		user.setFirstName(updatedUser.getFirstName());
@@ -51,10 +48,10 @@ public class UserService {
 		user.setUsername(updatedUser.getUsername());
 		return user;
 	}
-	
+
 	public void delete(Long id) {
 		User user = getUser(id);
 		users.remove(user);
 	}
-	
+
 }

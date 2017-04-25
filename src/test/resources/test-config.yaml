@@ -1,0 +1,9 @@
+name: ServiceSuite
+threadCount: 4
+ 
+tests:
+  - name: UnitTests
+    classes:
+      - com.blog.api.services.PostServiceTest
+      - com.blog.api.services.UserServiceTests
+      - com.blog.api.services.IdGeneratorServiceTest
